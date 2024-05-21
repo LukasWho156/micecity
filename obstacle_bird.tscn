@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://3drmvmfnlpj0"]
+
+[ext_resource type="Script" path="res://obstacle_emitter.gd" id="1_bdpqq"]
+[ext_resource type="Script" path="res://Obstacle.gd" id="2_kcp7m"]
+[ext_resource type="Texture2D" uid="uid://b3r3q0f7vhon3" path="res://assets/bird.png" id="3_iir35"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q1bk2"]
+radius = 60.0
+height = 264.0
+
+[node name="Obstacle" type="Node2D"]
+script = ExtResource("1_bdpqq")
+
+[node name="PhysicsBody" type="AnimatableBody2D" parent="."]
+position = Vector2(1200, 550)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_kcp7m")
+
+[node name="Sprite" type="Sprite2D" parent="PhysicsBody"]
+position = Vector2(88, -128)
+texture = ExtResource("3_iir35")
+
+[node name="Hitbox" type="CollisionShape2D" parent="PhysicsBody"]
+position = Vector2(-4, -124)
+shape = SubResource("CapsuleShape2D_q1bk2")
+
+[connection signal="pause" from="." to="PhysicsBody" method="_on_obstacle_pause"]
+[connection signal="play" from="." to="PhysicsBody" method="_on_obstacle_play"]
+[connection signal="hit" from="PhysicsBody" to="." method="on_hit"]

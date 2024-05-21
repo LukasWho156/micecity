@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxin4xoquxhyl"]
+
+[ext_resource type="Script" path="res://submit_score.gd" id="1_1au2l"]
+[ext_resource type="FontFile" uid="uid://cii5kltwsctrx" path="res://assets/Antihero.ttf" id="1_mh4mj"]
+
+[node name="ScoreSubmit" type="Node2D"]
+script = ExtResource("1_1au2l")
+
+[node name="Background" type="Polygon2D" parent="."]
+position = Vector2(580, 326)
+color = Color(0, 0, 0, 0.4)
+polygon = PackedVector2Array(-580, -326, -581, 323, 576, 324, 577, -326)
+
+[node name="Heading" type="Label" parent="."]
+offset_left = 360.0
+offset_top = 120.0
+offset_right = 810.0
+offset_bottom = 193.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_mh4mj")
+theme_override_font_sizes/font_size = 48
+text = "Enter Your Name:"
+metadata/_edit_use_anchors_ = true
+
+[node name="Name" type="LineEdit" parent="."]
+offset_left = 360.0
+offset_top = 249.0
+offset_right = 803.0
+offset_bottom = 310.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_mh4mj")
+theme_override_font_sizes/font_size = 32
+placeholder_text = "Mike"
+alignment = 1
+
+[node name="Submit" type="Button" parent="."]
+offset_left = 403.0
+offset_top = 384.0
+offset_right = 551.0
+offset_bottom = 434.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_mh4mj")
+theme_override_font_sizes/font_size = 20
+text = "Submit"
+
+[node name="Cancel" type="Button" parent="."]
+offset_left = 607.0
+offset_top = 384.0
+offset_right = 755.0
+offset_bottom = 434.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_mh4mj")
+theme_override_font_sizes/font_size = 20
+text = "Cancel"
+
+[connection signal="text_changed" from="Name" to="." method="_on_name_text_changed"]
+[connection signal="button_up" from="Submit" to="." method="_on_submit_button_up"]
+[connection signal="button_up" from="Cancel" to="." method="_on_cancel_button_up"]

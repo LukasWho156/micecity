@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cs7v5ba5rlb5a"]
+
+[ext_resource type="Script" path="res://obstacle_emitter.gd" id="1_ei83i"]
+[ext_resource type="Script" path="res://Obstacle.gd" id="2_t78tv"]
+[ext_resource type="Texture2D" uid="uid://3cpehkelra0s" path="res://assets/gum.png" id="3_x3f8q"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q1bk2"]
+radius = 14.0
+height = 48.0
+
+[node name="Obstacle" type="Node2D"]
+script = ExtResource("1_ei83i")
+
+[node name="PhysicsBody" type="AnimatableBody2D" parent="."]
+position = Vector2(1200, 550)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_t78tv")
+
+[node name="Sprite" type="Sprite2D" parent="PhysicsBody"]
+position = Vector2(-4, -14)
+texture = ExtResource("3_x3f8q")
+
+[node name="Hitbox" type="CollisionShape2D" parent="PhysicsBody"]
+position = Vector2(-2, -8)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_q1bk2")
+
+[connection signal="pause" from="." to="PhysicsBody" method="_on_obstacle_pause"]
+[connection signal="play" from="." to="PhysicsBody" method="_on_obstacle_play"]
+[connection signal="hit" from="PhysicsBody" to="." method="on_hit"]

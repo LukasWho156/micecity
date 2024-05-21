@@ -1,0 +1,499 @@
+[gd_scene load_steps=71 format=3 uid="uid://8uulm15fiidw"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_aask7"]
+[ext_resource type="Script" path="res://game.gd" id="1_rbb4v"]
+[ext_resource type="PackedScene" uid="uid://c1wbigf52fvfw" path="res://background.tscn" id="2_a5o37"]
+[ext_resource type="Texture2D" uid="uid://c6tckqg0i1wpy" path="res://assets/player.png" id="3_twoos"]
+[ext_resource type="Script" path="res://PlayerAnimation.gd" id="4_s4alb"]
+[ext_resource type="Texture2D" uid="uid://b1sp4r874ibq3" path="res://assets/brake.png" id="4_v66bk"]
+[ext_resource type="Script" path="res://Camera.gd" id="6_ambdd"]
+[ext_resource type="Texture2D" uid="uid://oh0yukdw04kb" path="res://assets/player_spray.png" id="7_up12i"]
+[ext_resource type="PackedScene" uid="uid://b8vwlnr2ejq7p" path="res://canvas_test.tscn" id="8_6ydns"]
+[ext_resource type="Texture2D" uid="uid://b7i4gae6iyhgu" path="res://assets/cat.png" id="8_l2qs0"]
+[ext_resource type="AudioStream" uid="uid://gycq17umaf21" path="res://assets/sfx/running.mp3" id="9_d3ghe"]
+[ext_resource type="FontFile" uid="uid://cii5kltwsctrx" path="res://assets/Antihero.ttf" id="9_gpqxx"]
+[ext_resource type="Script" path="res://Cat.gd" id="9_vpm0o"]
+[ext_resource type="Script" path="res://sound_running.gd" id="10_2y6lf"]
+[ext_resource type="Script" path="res://Score.gd" id="10_5e2pp"]
+[ext_resource type="Texture2D" uid="uid://dthqcmr0rije5" path="res://assets/cat_ui.png" id="11_0ifvl"]
+[ext_resource type="AudioStream" uid="uid://b2qtr0ubodani" path="res://assets/sfx/jumping.mp3" id="11_gy1j6"]
+[ext_resource type="Script" path="res://ChaseUI.gd" id="11_v6cmu"]
+[ext_resource type="AudioStream" uid="uid://c2lmxe3fohrxs" path="res://assets/sfx/siren.mp3" id="11_wt4n7"]
+[ext_resource type="Script" path="res://game_over_screen.gd" id="11_wxbq2"]
+[ext_resource type="Texture2D" uid="uid://vlx3j8yv3dll" path="res://assets/mouse_ui.png" id="12_8rh7d"]
+[ext_resource type="Script" path="res://Siren.gd" id="12_ehgjq"]
+[ext_resource type="Script" path="res://cat_bar.gd" id="12_gdm2x"]
+[ext_resource type="Script" path="res://sound_jumping.gd" id="12_mnyvt"]
+[ext_resource type="PackedScene" uid="uid://do75ddaui645h" path="res://button.tscn" id="12_r2uxp"]
+[ext_resource type="Script" path="res://cat_ui.gd" id="13_7wx4u"]
+[ext_resource type="AudioStream" uid="uid://djuialj5xexf1" path="res://assets/sfx/spraying.mp3" id="13_mo1dx"]
+[ext_resource type="Script" path="res://sound_spraying.gd" id="14_naktm"]
+[ext_resource type="Texture2D" uid="uid://ckwwfxibj3eaw" path="res://assets/input.png" id="22_xr285"]
+[ext_resource type="Script" path="res://tutorial.gd" id="23_md3iy"]
+[ext_resource type="Script" path="res://notification.gd" id="27_q77a1"]
+[ext_resource type="Script" path="res://notification_verdict.gd" id="28_f3fu8"]
+[ext_resource type="Script" path="res://notification_score.gd" id="29_tgy1f"]
+[ext_resource type="AudioStream" uid="uid://dtmgmsd7m0f34" path="res://assets/sfx/crash.mp3" id="32_jx0mk"]
+[ext_resource type="Shader" path="res://transition_main.gdshader" id="32_p4chb"]
+[ext_resource type="Texture2D" uid="uid://b66ohu1bwt2d0" path="res://assets/background2.png" id="33_texui"]
+[ext_resource type="Script" path="res://sound_crash.gd" id="33_xqb5e"]
+[ext_resource type="AudioStream" uid="uid://ddqgyvvcodw4k" path="res://assets/sfx/music_running.mp3" id="34_28jat"]
+[ext_resource type="PackedScene" uid="uid://bxin4xoquxhyl" path="res://submit_score.tscn" id="34_303ys"]
+[ext_resource type="Script" path="res://transition.gd" id="34_qhga7"]
+[ext_resource type="Script" path="res://music_running.gd" id="35_6mutd"]
+[ext_resource type="PackedScene" uid="uid://deets8b4mm2it" path="res://leaderboard.tscn" id="35_6xiv3"]
+[ext_resource type="AudioStream" uid="uid://dtjil4b71tvpq" path="res://assets/sfx/music_spraying.mp3" id="36_u80wh"]
+[ext_resource type="Script" path="res://music_spraying.gd" id="37_1f5rx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xoyb5"]
+atlas = ExtResource("3_twoos")
+region = Rect2(594, 278, 297, 278)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dsh2"]
+atlas = ExtResource("3_twoos")
+region = Rect2(0, 0, 297, 278)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1uon"]
+atlas = ExtResource("3_twoos")
+region = Rect2(297, 278, 297, 278)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mgmpr"]
+atlas = ExtResource("3_twoos")
+region = Rect2(0, 0, 297, 278)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_77u0e"]
+atlas = ExtResource("3_twoos")
+region = Rect2(297, 0, 297, 278)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5o4bx"]
+atlas = ExtResource("3_twoos")
+region = Rect2(594, 0, 297, 278)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee03o"]
+atlas = ExtResource("3_twoos")
+region = Rect2(0, 278, 297, 278)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30qry"]
+atlas = ExtResource("7_up12i")
+region = Rect2(0, 0, 263, 266)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0siv7"]
+atlas = ExtResource("7_up12i")
+region = Rect2(263, 0, 263, 266)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w80sv"]
+atlas = ExtResource("7_up12i")
+region = Rect2(0, 0, 263, 266)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b867v"]
+atlas = ExtResource("3_twoos")
+region = Rect2(0, 0, 297, 278)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lmsts"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_v66bk")
+}],
+"loop": true,
+"name": &"brake",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xoyb5")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1dsh2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1uon")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mgmpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_77u0e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5o4bx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ee03o")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30qry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0siv7")
+}],
+"loop": false,
+"name": &"spray",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w80sv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b867v")
+}],
+"loop": false,
+"name": &"stop_spray",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0dr1r"]
+radius = 26.0
+height = 80.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42pt3"]
+atlas = ExtResource("8_l2qs0")
+region = Rect2(0, 0, 413, 388)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4alcc"]
+atlas = ExtResource("8_l2qs0")
+region = Rect2(413, 0, 413, 388)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75psl"]
+atlas = ExtResource("8_l2qs0")
+region = Rect2(0, 388, 413, 388)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6t68"]
+atlas = ExtResource("8_l2qs0")
+region = Rect2(413, 388, 413, 388)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x7qic"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42pt3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4alcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75psl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6t68")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3kg04"]
+atlas = ExtResource("22_xr285")
+region = Rect2(0, 0, 99, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_636fq"]
+atlas = ExtResource("22_xr285")
+region = Rect2(198, 0, 99, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b2f2f"]
+atlas = ExtResource("22_xr285")
+region = Rect2(99, 0, 99, 152)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2po1h"]
+atlas = ExtResource("22_xr285")
+region = Rect2(198, 0, 99, 152)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nrikv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3kg04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_636fq")
+}],
+"loop": true,
+"name": &"left_click",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b2f2f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2po1h")
+}],
+"loop": true,
+"name": &"right_click",
+"speed": 5.0
+}]
+
+[sub_resource type="Gradient" id="Gradient_2y8oy"]
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xvdog"]
+gradient = SubResource("Gradient_2y8oy")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gbnba"]
+shader = ExtResource("32_p4chb")
+shader_parameter/progress = 0.0
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_rbb4v")
+
+[node name="Background" parent="." instance=ExtResource("2_a5o37")]
+
+[node name="PowerBox" parent="." instance=ExtResource("8_6ydns")]
+
+[node name="Player" type="AnimatableBody2D" parent="."]
+z_index = 1
+position = Vector2(100, 550)
+script = ExtResource("1_aask7")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="Player"]
+position = Vector2(-23, -59)
+scale = Vector2(0.579137, 0.579137)
+sprite_frames = SubResource("SpriteFrames_lmsts")
+animation = &"spray"
+script = ExtResource("4_s4alb")
+
+[node name="Hitbox" type="CollisionShape2D" parent="Player"]
+position = Vector2(-2, -37)
+shape = SubResource("CapsuleShape2D_0dr1r")
+
+[node name="Running" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("9_d3ghe")
+bus = &"Effects"
+script = ExtResource("10_2y6lf")
+
+[node name="Jumping" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("11_gy1j6")
+volume_db = 15.928
+bus = &"Effects"
+script = ExtResource("12_mnyvt")
+
+[node name="Sprayng" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("13_mo1dx")
+bus = &"Effects"
+script = ExtResource("14_naktm")
+
+[node name="Cat" type="AnimatedSprite2D" parent="."]
+position = Vector2(-889, 388)
+sprite_frames = SubResource("SpriteFrames_x7qic")
+frame_progress = 0.313201
+script = ExtResource("9_vpm0o")
+
+[node name="Siren" type="AudioStreamPlayer" parent="Cat"]
+stream = ExtResource("11_wt4n7")
+bus = &"Effects"
+script = ExtResource("12_ehgjq")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+script = ExtResource("6_ambdd")
+
+[node name="Score" type="Label" parent="Camera2D"]
+offset_left = 285.0
+offset_top = -313.0
+offset_right = 560.0
+offset_bottom = -277.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_gpqxx")
+theme_override_font_sizes/font_size = 32
+text = "Score"
+horizontal_alignment = 2
+script = ExtResource("10_5e2pp")
+
+[node name="Tutorial" type="AnimatedSprite2D" parent="Camera2D"]
+position = Vector2(6, 72)
+sprite_frames = SubResource("SpriteFrames_nrikv")
+animation = &"left_click"
+script = ExtResource("23_md3iy")
+
+[node name="ChaseUI" type="Node2D" parent="Camera2D"]
+position = Vector2(-20, 100)
+script = ExtResource("11_v6cmu")
+
+[node name="Outline" type="Polygon2D" parent="Camera2D/ChaseUI"]
+position = Vector2(6.10352e-05, 3.05176e-05)
+color = Color(0.113725, 0, 0, 1)
+polygon = PackedVector2Array(-219, 258, -219, 303, 245, 303, 245, 258)
+
+[node name="EmptyBar" type="Polygon2D" parent="Camera2D/ChaseUI"]
+color = Color(0.113725, 0, 0, 1)
+polygon = PackedVector2Array(-217, 260, -217, 301, 243, 301, 243, 260)
+
+[node name="FullBar" type="Polygon2D" parent="Camera2D/ChaseUI"]
+color = Color(0, 1, 0, 1)
+polygon = PackedVector2Array(-217, 260, -217, 301, 243, 301, 243, 260)
+script = ExtResource("12_gdm2x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/ChaseUI"]
+position = Vector2(13, 281.169)
+rotation = -1.5708
+scale = Vector2(0.159868, 460.324)
+texture = SubResource("GradientTexture1D_xvdog")
+
+[node name="MouseUI" type="Sprite2D" parent="Camera2D/ChaseUI"]
+position = Vector2(230, 274)
+scale = Vector2(0.633333, 0.633333)
+texture = ExtResource("12_8rh7d")
+
+[node name="CatUI" type="Sprite2D" parent="Camera2D/ChaseUI"]
+position = Vector2(-217.226, 275.875)
+scale = Vector2(0.466312, 0.466312)
+texture = ExtResource("11_0ifvl")
+script = ExtResource("13_7wx4u")
+
+[node name="Notification" type="Node2D" parent="Camera2D"]
+position = Vector2(5, -103)
+script = ExtResource("27_q77a1")
+
+[node name="Verdict" type="Label" parent="Camera2D/Notification"]
+offset_left = -327.0
+offset_top = -89.0
+offset_right = 331.0
+offset_bottom = -9.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_gpqxx")
+theme_override_font_sizes/font_size = 72
+text = "Meh"
+horizontal_alignment = 1
+script = ExtResource("28_f3fu8")
+
+[node name="Score" type="Label" parent="Camera2D/Notification"]
+offset_left = -332.0
+offset_top = 2.0
+offset_right = 326.0
+offset_bottom = 77.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_gpqxx")
+theme_override_font_sizes/font_size = 48
+text = "+0"
+horizontal_alignment = 1
+script = ExtResource("29_tgy1f")
+
+[node name="GameOverScreen" type="Node2D" parent="Camera2D"]
+visible = false
+z_index = 4
+script = ExtResource("11_wxbq2")
+
+[node name="Polygon2D" type="Polygon2D" parent="Camera2D/GameOverScreen"]
+color = Color(0, 0, 0, 0.4)
+polygon = PackedVector2Array(-578, -323, -575, 324, 576, 324, 577, -326)
+
+[node name="RestartButton" parent="Camera2D/GameOverScreen" instance=ExtResource("12_r2uxp")]
+position = Vector2(-95, 75)
+scale = Vector2(0.5, 0.5)
+
+[node name="ShareButton" parent="Camera2D/GameOverScreen" instance=ExtResource("12_r2uxp")]
+position = Vector2(103, 73)
+scale = Vector2(0.5, 0.5)
+
+[node name="Wrecked" type="Label" parent="Camera2D/GameOverScreen"]
+offset_left = -188.0
+offset_top = -219.0
+offset_right = 205.0
+offset_bottom = -146.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_gpqxx")
+theme_override_font_sizes/font_size = 72
+text = "Wrecked!"
+metadata/_edit_use_anchors_ = true
+
+[node name="FinalScore" type="Label" parent="Camera2D/GameOverScreen"]
+offset_left = -174.0
+offset_top = -101.0
+offset_right = 183.0
+offset_bottom = -38.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("9_gpqxx")
+theme_override_font_sizes/font_size = 32
+text = "Final Score"
+horizontal_alignment = 1
+script = ExtResource("10_5e2pp")
+
+[node name="ScoreSubmit" parent="Camera2D" instance=ExtResource("34_303ys")]
+visible = false
+z_index = 4
+position = Vector2(-576, -322)
+
+[node name="Leaderboard" parent="Camera2D" instance=ExtResource("35_6xiv3")]
+visible = false
+position = Vector2(-577, -327)
+
+[node name="Transition" type="Sprite2D" parent="."]
+z_index = 5
+material = SubResource("ShaderMaterial_gbnba")
+position = Vector2(576, 324)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("33_texui")
+script = ExtResource("34_qhga7")
+
+[node name="Crash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("32_jx0mk")
+bus = &"Effects"
+script = ExtResource("33_xqb5e")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="MusicTrackRunning" type="AudioStreamPlayer" parent="Node2D"]
+stream = ExtResource("34_28jat")
+bus = &"Music"
+script = ExtResource("35_6mutd")
+
+[node name="MusicTrackSpraying" type="AudioStreamPlayer" parent="Node2D"]
+stream = ExtResource("36_u80wh")
+bus = &"Music"
+script = ExtResource("37_1f5rx")
+
+[connection signal="crash" from="." to="Crash" method="_on_game_crash"]
+[connection signal="die" from="." to="Player" method="_on_game_die"]
+[connection signal="die" from="." to="Camera2D/GameOverScreen" method="_on_game_die"]
+[connection signal="jump_tut" from="." to="Camera2D/Tutorial" method="_on_game_jump_tut"]
+[connection signal="reset" from="." to="PowerBox" method="_reset_full"]
+[connection signal="reset" from="." to="Player" method="reset"]
+[connection signal="spawn_power_box" from="." to="PowerBox" method="_reset"]
+[connection signal="spawn_power_box" from="." to="Camera2D/Tutorial" method="_on_power_box_enter"]
+[connection signal="state_change" from="Player" to="Player/Sprite" method="_on_player_state_change"]
+[connection signal="state_change" from="Player" to="Player/Running" method="_on_player_state_change"]
+[connection signal="state_change" from="Player" to="Player/Jumping" method="_on_player_state_change"]
+[connection signal="state_change" from="Player" to="Player/Sprayng" method="_on_player_state_change"]
+[connection signal="state_change" from="Player" to="Camera2D/ChaseUI" method="_on_player_state_change"]
+[connection signal="state_change" from="Player" to="Node2D/MusicTrackRunning" method="_on_player_state_change"]
+[connection signal="state_change" from="Player" to="Node2D/MusicTrackSpraying" method="_on_player_state_change"]
+[connection signal="finished" from="Player/Running" to="Player/Running" method="_on_finished"]
+[connection signal="finished" from="Player/Sprayng" to="Player/Sprayng" method="_on_finished"]
+[connection signal="finished" from="Cat/Siren" to="Cat/Siren" method="_on_finished"]
+[connection signal="close_submit" from="Camera2D/GameOverScreen" to="Camera2D/ScoreSubmit" method="close"]
+[connection signal="open_leaderboard" from="Camera2D/GameOverScreen" to="Camera2D/Leaderboard" method="open"]
+[connection signal="open_submit" from="Camera2D/GameOverScreen" to="Camera2D/ScoreSubmit" method="open"]
+[connection signal="clicked" from="Camera2D/GameOverScreen/RestartButton" to="." method="on_reset"]
+[connection signal="clicked" from="Camera2D/GameOverScreen/RestartButton" to="Camera2D/GameOverScreen" method="_on_restart_button_clicked"]
+[connection signal="clicked" from="Camera2D/GameOverScreen/ShareButton" to="Camera2D/GameOverScreen" method="_on_share_button_clicked"]
+[connection signal="cancel" from="Camera2D/ScoreSubmit" to="Camera2D/GameOverScreen" method="_on_score_submit_cancel"]
+[connection signal="submit" from="Camera2D/ScoreSubmit" to="Camera2D/GameOverScreen" method="_on_score_submit_submit"]
+[connection signal="closed" from="Camera2D/Leaderboard" to="." method="on_reset"]
+[connection signal="finished" from="Node2D/MusicTrackRunning" to="Node2D/MusicTrackRunning" method="_on_finished"]
+[connection signal="finished" from="Node2D/MusicTrackSpraying" to="Node2D/MusicTrackSpraying" method="_on_finished"]

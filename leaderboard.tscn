@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://deets8b4mm2it"]
+
+[ext_resource type="FontFile" uid="uid://cii5kltwsctrx" path="res://assets/Antihero.ttf" id="1_1h8st"]
+[ext_resource type="Script" path="res://leaderboard.gd" id="1_soq52"]
+[ext_resource type="PackedScene" uid="uid://do75ddaui645h" path="res://button.tscn" id="3_1r6uw"]
+[ext_resource type="Script" path="res://leaderboard_container.gd" id="3_4flnj"]
+[ext_resource type="Script" path="res://load_scores.gd" id="4_v1mp5"]
+
+[node name="Leaderboard" type="Node2D"]
+script = ExtResource("1_soq52")
+
+[node name="Background" type="Polygon2D" parent="."]
+position = Vector2(580, 326)
+color = Color(0, 0, 0, 0.4)
+polygon = PackedVector2Array(-580, -326, -581, 323, 576, 324, 577, -326)
+
+[node name="Heading" type="Label" parent="."]
+offset_left = 355.0
+offset_top = 49.0
+offset_right = 805.0
+offset_bottom = 122.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_1h8st")
+theme_override_font_sizes/font_size = 48
+text = "Leaderboards"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" parent="." instance=ExtResource("3_1r6uw")]
+position = Vector2(1062, 72)
+scale = Vector2(0.3, 0.3)
+
+[node name="TabContainer" type="TabContainer" parent="."]
+offset_left = 20.0
+offset_top = 123.0
+offset_right = 1131.0
+offset_bottom = 627.0
+theme_override_colors/font_selected_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("1_1h8st")
+theme_override_font_sizes/font_size = 22
+script = ExtResource("3_4flnj")
+
+[node name="Weekly" type="VBoxContainer" parent="TabContainer"]
+layout_mode = 2
+script = ExtResource("4_v1mp5")
+
+[node name="Monthly" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("4_v1mp5")
+
+[node name="All Time" type="VBoxContainer" parent="TabContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("4_v1mp5")
+
+[connection signal="load_scores" from="." to="TabContainer/Weekly" method="_on_load_scores"]
+[connection signal="load_scores" from="." to="TabContainer/Monthly" method="_on_load_scores"]
+[connection signal="load_scores" from="." to="TabContainer/All Time" method="_on_load_scores"]
+[connection signal="clicked" from="Button" to="." method="close"]

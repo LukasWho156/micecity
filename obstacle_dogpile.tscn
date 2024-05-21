@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://t2lm1mqblg7b"]
+
+[ext_resource type="Script" path="res://obstacle_emitter.gd" id="1_tvbhp"]
+[ext_resource type="Script" path="res://Obstacle.gd" id="2_ed84o"]
+[ext_resource type="Texture2D" uid="uid://cpn4ejwi4n8sg" path="res://assets/dogpile.png" id="3_aqey5"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q1bk2"]
+radius = 42.0
+height = 166.0
+
+[node name="Obstacle" type="Node2D"]
+script = ExtResource("1_tvbhp")
+
+[node name="PhysicsBody" type="AnimatableBody2D" parent="."]
+position = Vector2(1200, 550)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_ed84o")
+
+[node name="Sprite" type="Sprite2D" parent="PhysicsBody"]
+position = Vector2(0, -79)
+texture = ExtResource("3_aqey5")
+
+[node name="Hitbox" type="CollisionShape2D" parent="PhysicsBody"]
+position = Vector2(4, -66)
+shape = SubResource("CapsuleShape2D_q1bk2")
+
+[connection signal="pause" from="." to="PhysicsBody" method="_on_obstacle_pause"]
+[connection signal="play" from="." to="PhysicsBody" method="_on_obstacle_play"]
+[connection signal="hit" from="PhysicsBody" to="." method="on_hit"]

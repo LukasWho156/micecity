@@ -1,0 +1,96 @@
+[gd_scene load_steps=20 format=3 uid="uid://b8vwlnr2ejq7p"]
+
+[ext_resource type="Script" path="res://canvas_test3.gd" id="1_gmden"]
+[ext_resource type="Script" path="res://CanvasTest.gd" id="1_u6gox"]
+[ext_resource type="Script" path="res://CanvasTest2.gd" id="2_fnono"]
+[ext_resource type="Texture2D" uid="uid://c0jiine4ui74x" path="res://assets/stromkasten.png" id="2_m5wcs"]
+[ext_resource type="Script" path="res://Graffiti.gd" id="3_2yrgc"]
+[ext_resource type="Script" path="res://Box.gd" id="3_d8bj1"]
+[ext_resource type="Shader" path="res://evaluator_shader.gdshader" id="4_3tqfs"]
+[ext_resource type="Script" path="res://Evaluator.gd" id="4_j3jtk"]
+[ext_resource type="Shader" path="res://template_shader.gdshader" id="4_s736y"]
+[ext_resource type="Texture2D" uid="uid://pmbaiacrixxx" path="res://assets/graffiti_godot.png" id="5_8hspj"]
+[ext_resource type="Script" path="res://template.gd" id="6_xy4tw"]
+[ext_resource type="Shader" path="res://final_evaluator.gdshader" id="8_5gyn7"]
+[ext_resource type="Script" path="res://evaluator_viewport.gd" id="9_i0xe0"]
+[ext_resource type="Script" path="res://FinalEvaluator.gd" id="10_pde5q"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1h7p8"]
+shader = ExtResource("4_s736y")
+shader_parameter/alpha = 0.5
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_y3tvp"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w3mkw"]
+shader = ExtResource("8_5gyn7")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_0hyx6"]
+viewport_path = NodePath("Box/Evaluator")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eq0yy"]
+shader = ExtResource("4_3tqfs")
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_gmden")
+
+[node name="Box" type="Sprite2D" parent="."]
+position = Vector2(-500, 288)
+scale = Vector2(0.807851, 0.867852)
+texture = ExtResource("2_m5wcs")
+script = ExtResource("3_d8bj1")
+
+[node name="Template" type="Sprite2D" parent="Box"]
+material = SubResource("ShaderMaterial_1h7p8")
+position = Vector2(-212, -299)
+texture = ExtResource("5_8hspj")
+centered = false
+script = ExtResource("6_xy4tw")
+
+[node name="Graffiti" type="Sprite2D" parent="Box"]
+position = Vector2(-212, -299)
+texture = SubResource("ViewportTexture_y3tvp")
+offset = Vector2(212, 299)
+script = ExtResource("3_2yrgc")
+
+[node name="FinalEvaluator" type="Sprite2D" parent="Box"]
+material = SubResource("ShaderMaterial_w3mkw")
+position = Vector2(0, -400)
+texture = SubResource("ViewportTexture_0hyx6")
+script = ExtResource("10_pde5q")
+
+[node name="Evaluator" type="SubViewport" parent="Box"]
+size = Vector2i(106, 149)
+script = ExtResource("9_i0xe0")
+
+[node name="Evaluator" type="Sprite2D" parent="Box/Evaluator"]
+texture_filter = 2
+material = SubResource("ShaderMaterial_eq0yy")
+scale = Vector2(0.25, 0.25)
+centered = false
+script = ExtResource("4_j3jtk")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(424, 598)
+script = ExtResource("1_u6gox")
+
+[node name="Node2D" type="Node2D" parent="SubViewport"]
+script = ExtResource("2_fnono")
+
+[connection signal="draw_end" from="." to="Box/Graffiti" method="_on_node_2d_draw_end"]
+[connection signal="draw_move" from="." to="Box/Graffiti" method="_on_node_2d_draw_move"]
+[connection signal="draw_start" from="." to="Box/Graffiti" method="_on_node_2d_draw_start"]
+[connection signal="reset" from="." to="Box" method="_on_node_2d_reset"]
+[connection signal="reset" from="." to="Box/Template" method="_on_node_2d_reset"]
+[connection signal="reset" from="." to="Box/FinalEvaluator" method="_on_node_2d_reset"]
+[connection signal="reset" from="." to="Box/Evaluator/Evaluator" method="_on_node_2d_reset"]
+[connection signal="reset" from="." to="SubViewport" method="_on_node_2d_reset"]
+[connection signal="reset" from="." to="SubViewport/Node2D" method="_on_node_2d_reset"]
+[connection signal="reset_full" from="." to="Box" method="_on_node_2d_reset_full"]
+[connection signal="reset_full" from="." to="Box/FinalEvaluator" method="_on_node_2d_reset_full"]
+[connection signal="left_screen" from="Box" to="Box/FinalEvaluator" method="_on_box_left_screen"]
+[connection signal="draw_end" from="Box/Graffiti" to="SubViewport/Node2D" method="_on_graffiti_draw_end"]
+[connection signal="draw_move" from="Box/Graffiti" to="SubViewport/Node2D" method="_on_graffiti_draw_move"]
+[connection signal="draw_start" from="Box/Graffiti" to="SubViewport/Node2D" method="_on_graffiti_draw_start"]

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxig1nwy85u3l"]
+
+[ext_resource type="Script" path="res://obstacle_emitter.gd" id="1_yqp3k"]
+[ext_resource type="Script" path="res://Obstacle.gd" id="2_5ywfg"]
+[ext_resource type="Texture2D" uid="uid://bp3371kpf3ahq" path="res://assets/pizza_underground.png" id="3_iv6ta"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q1bk2"]
+radius = 46.0
+height = 352.0
+
+[node name="Obstacle" type="Node2D"]
+script = ExtResource("1_yqp3k")
+
+[node name="PhysicsBody" type="AnimatableBody2D" parent="."]
+position = Vector2(1200, 550)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_5ywfg")
+
+[node name="Sprite" type="Sprite2D" parent="PhysicsBody"]
+position = Vector2(140.672, -45)
+scale = Vector2(2.09375, 2.09375)
+texture = ExtResource("3_iv6ta")
+
+[node name="Hitbox" type="CollisionShape2D" parent="PhysicsBody"]
+position = Vector2(148, -44)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_q1bk2")
+
+[connection signal="pause" from="." to="PhysicsBody" method="_on_obstacle_pause"]
+[connection signal="play" from="." to="PhysicsBody" method="_on_obstacle_play"]
+[connection signal="hit" from="PhysicsBody" to="." method="on_hit"]

@@ -1,0 +1,66 @@
+[gd_scene load_steps=10 format=3 uid="uid://do75ddaui645h"]
+
+[ext_resource type="Script" path="res://button.gd" id="1_inw23"]
+[ext_resource type="Texture2D" uid="uid://bngdoy00usui2" path="res://assets/restart.png" id="1_u7uot"]
+[ext_resource type="Texture2D" uid="uid://x7qqifogcsfj" path="res://assets/close.png" id="2_3vogi"]
+[ext_resource type="Texture2D" uid="uid://c1dri8md6xxbc" path="res://assets/play.png" id="2_aok2i"]
+[ext_resource type="Script" path="res://button_sprite.gd" id="2_kcwvl"]
+[ext_resource type="Script" path="res://button_hitbox.gd" id="3_pn7qm"]
+[ext_resource type="Texture2D" uid="uid://cnql0wxh4j25s" path="res://assets/share.png" id="5_fgcbd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_loann"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3vogi")
+}],
+"loop": true,
+"name": &"close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_aok2i")
+}],
+"loop": true,
+"name": &"play",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_u7uot")
+}],
+"loop": true,
+"name": &"restart",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_fgcbd")
+}],
+"loop": true,
+"name": &"share",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ixipv"]
+radius = 140.357
+
+[node name="Button" type="Node2D"]
+script = ExtResource("1_inw23")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_loann")
+animation = &"close"
+script = ExtResource("2_kcwvl")
+
+[node name="Area2D" type="Area2D" parent="AnimatedSprite2D"]
+script = ExtResource("3_pn7qm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/Area2D"]
+shape = SubResource("CircleShape2D_ixipv")
+
+[connection signal="type_change" from="." to="AnimatedSprite2D" method="_on_button_type_change"]
+[connection signal="clicked" from="AnimatedSprite2D/Area2D" to="." method="_on_button_clicked"]
+[connection signal="hovered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_button_hovered"]
+[connection signal="unhovered" from="AnimatedSprite2D/Area2D" to="AnimatedSprite2D" method="_on_button_unhovered"]

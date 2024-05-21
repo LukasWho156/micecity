@@ -1,0 +1,246 @@
+[gd_scene load_steps=39 format=3 uid="uid://bmcpf068xigv2"]
+
+[ext_resource type="Script" path="res://Title.gd" id="1_i565n"]
+[ext_resource type="Texture2D" uid="uid://b66ohu1bwt2d0" path="res://assets/background2.png" id="2_f5roh"]
+[ext_resource type="Script" path="res://Graffiti.gd" id="3_f146x"]
+[ext_resource type="Script" path="res://CanvasTest.gd" id="4_qrfci"]
+[ext_resource type="Script" path="res://CanvasTest2.gd" id="5_g6koo"]
+[ext_resource type="Texture2D" uid="uid://c6tckqg0i1wpy" path="res://assets/player.png" id="6_qlws3"]
+[ext_resource type="Texture2D" uid="uid://oh0yukdw04kb" path="res://assets/player_spray.png" id="7_uxq4t"]
+[ext_resource type="Script" path="res://title_player.gd" id="8_0i7dv"]
+[ext_resource type="PackedScene" uid="uid://do75ddaui645h" path="res://button.tscn" id="9_23bxp"]
+[ext_resource type="AudioStream" uid="uid://gycq17umaf21" path="res://assets/sfx/running.mp3" id="9_rtr1f"]
+[ext_resource type="Texture2D" uid="uid://b7i4gae6iyhgu" path="res://assets/cat.png" id="9_xhtqg"]
+[ext_resource type="AudioStream" uid="uid://djuialj5xexf1" path="res://assets/sfx/spraying.mp3" id="10_1kajs"]
+[ext_resource type="Script" path="res://title_sound_running.gd" id="10_4f8px"]
+[ext_resource type="Script" path="res://title_cat.gd" id="10_guc2p"]
+[ext_resource type="Script" path="res://title_spraying_sound.gd" id="11_2acev"]
+[ext_resource type="AudioStream" uid="uid://c2lmxe3fohrxs" path="res://assets/sfx/siren.mp3" id="11_mh64q"]
+[ext_resource type="Script" path="res://title_sound_cat.gd" id="12_ht8f8"]
+[ext_resource type="Shader" path="res://transition_exit.gdshader" id="12_vgiv0"]
+[ext_resource type="Script" path="res://title_transition.gd" id="13_nqjn7"]
+[ext_resource type="AudioStream" uid="uid://bewx5ol64ngfm" path="res://assets/sfx/music_ambience.mp3" id="20_516is"]
+[ext_resource type="Script" path="res://music_running.gd" id="21_wt07h"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gqwdo"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ns3g"]
+atlas = ExtResource("6_qlws3")
+region = Rect2(0, 0, 297, 278)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64vpv"]
+atlas = ExtResource("6_qlws3")
+region = Rect2(297, 0, 297, 278)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bl664"]
+atlas = ExtResource("6_qlws3")
+region = Rect2(0, 0, 297, 278)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fiype"]
+atlas = ExtResource("6_qlws3")
+region = Rect2(0, 278, 297, 278)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmjo4"]
+atlas = ExtResource("6_qlws3")
+region = Rect2(594, 0, 297, 278)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wrs2"]
+atlas = ExtResource("7_uxq4t")
+region = Rect2(0, 0, 263, 266)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnepg"]
+atlas = ExtResource("7_uxq4t")
+region = Rect2(263, 0, 263, 266)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgina"]
+atlas = ExtResource("7_uxq4t")
+region = Rect2(0, 0, 263, 266)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0es8i"]
+atlas = ExtResource("6_qlws3")
+region = Rect2(0, 0, 297, 278)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_b8xi1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ns3g")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64vpv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bl664")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fiype")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmjo4")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wrs2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnepg")
+}],
+"loop": false,
+"name": &"spray",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgina")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0es8i")
+}],
+"loop": false,
+"name": &"stop_spray",
+"speed": 4.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ch0r0"]
+atlas = ExtResource("9_xhtqg")
+region = Rect2(0, 0, 413, 388)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_luej3"]
+atlas = ExtResource("9_xhtqg")
+region = Rect2(413, 0, 413, 388)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2m47"]
+atlas = ExtResource("9_xhtqg")
+region = Rect2(0, 388, 413, 388)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mt67m"]
+atlas = ExtResource("9_xhtqg")
+region = Rect2(413, 388, 413, 388)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_68wjn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ch0r0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_luej3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2m47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mt67m")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_svowf"]
+shader = ExtResource("12_vgiv0")
+shader_parameter/progress = 0.0
+
+[node name="Title" type="Node2D"]
+script = ExtResource("1_i565n")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(570, 315)
+texture = ExtResource("2_f5roh")
+
+[node name="Graffiti" type="Sprite2D" parent="Background"]
+position = Vector2(-600, -328)
+texture = SubResource("ViewportTexture_gqwdo")
+offset = Vector2(600, 250)
+script = ExtResource("3_f146x")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+disable_3d = true
+transparent_bg = true
+size = Vector2i(1200, 500)
+script = ExtResource("4_qrfci")
+
+[node name="Node2D" type="Node2D" parent="SubViewport"]
+script = ExtResource("5_g6koo")
+
+[node name="Player" type="AnimatedSprite2D" parent="."]
+position = Vector2(89.7305, 541.229)
+scale = Vector2(0.634738, 0.634738)
+sprite_frames = SubResource("SpriteFrames_b8xi1")
+animation = &"run"
+script = ExtResource("8_0i7dv")
+
+[node name="Running" type="AudioStreamPlayer" parent="Player"]
+stream = ExtResource("9_rtr1f")
+bus = &"Effects"
+script = ExtResource("10_4f8px")
+
+[node name="Cat" type="AnimatedSprite2D" parent="."]
+position = Vector2(-453, 432)
+sprite_frames = SubResource("SpriteFrames_68wjn")
+script = ExtResource("10_guc2p")
+
+[node name="Siren" type="AudioStreamPlayer" parent="Cat"]
+stream = ExtResource("11_mh64q")
+bus = &"Effects"
+script = ExtResource("12_ht8f8")
+
+[node name="Button" parent="." instance=ExtResource("9_23bxp")]
+position = Vector2(1068, 566)
+scale = Vector2(0.5, 0.5)
+
+[node name="Button2" parent="." instance=ExtResource("9_23bxp")]
+position = Vector2(51, 53)
+scale = Vector2(0.3, 0.3)
+
+[node name="Transition" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_svowf")
+position = Vector2(576, 324)
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_f5roh")
+script = ExtResource("13_nqjn7")
+
+[node name="Sprayng" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_1kajs")
+bus = &"Effects"
+script = ExtResource("11_2acev")
+
+[node name="MusicTrackAmbience" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_516is")
+bus = &"Music"
+script = ExtResource("21_wt07h")
+
+[connection signal="draw_end" from="." to="Background/Graffiti" method="_on_node_2d_draw_end"]
+[connection signal="draw_end" from="." to="Player" method="_on_title_draw_end"]
+[connection signal="draw_end" from="." to="Sprayng" method="_on_title_draw_end"]
+[connection signal="draw_move" from="." to="Background/Graffiti" method="_on_node_2d_draw_move"]
+[connection signal="draw_start" from="." to="Background/Graffiti" method="_on_node_2d_draw_start"]
+[connection signal="draw_start" from="." to="Player" method="_on_title_draw_start"]
+[connection signal="draw_start" from="." to="Sprayng" method="_on_title_draw_start"]
+[connection signal="start" from="." to="Player" method="_on_title_start"]
+[connection signal="start" from="." to="Player/Running" method="_on_title_start"]
+[connection signal="start" from="." to="Cat" method="_on_title_start"]
+[connection signal="start" from="." to="Button" method="queue_free"]
+[connection signal="draw_end" from="Background/Graffiti" to="SubViewport/Node2D" method="_on_graffiti_draw_end"]
+[connection signal="draw_move" from="Background/Graffiti" to="SubViewport/Node2D" method="_on_graffiti_draw_move"]
+[connection signal="draw_start" from="Background/Graffiti" to="SubViewport/Node2D" method="_on_graffiti_draw_start"]
+[connection signal="finished" from="Player/Running" to="Player/Running" method="_on_finished"]
+[connection signal="enter" from="Cat" to="Transition" method="_on_cat_enter"]
+[connection signal="finished" from="Cat/Siren" to="Cat/Siren" method="_on_finished"]
+[connection signal="clicked" from="Button" to="." method="_on_button_clicked"]
+[connection signal="clicked" from="Button" to="Sprayng" method="_on_title_draw_end"]
+[connection signal="clicked" from="Button2" to="SubViewport" method="_on_node_2d_reset"]
+[connection signal="clicked" from="Button2" to="SubViewport/Node2D" method="_on_node_2d_reset"]
+[connection signal="done" from="Transition" to="." method="_on_transition_done"]
+[connection signal="finished" from="Sprayng" to="Sprayng" method="_on_finished"]
+[connection signal="finished" from="MusicTrackAmbience" to="MusicTrackAmbience" method="_on_finished"]

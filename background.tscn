@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1wbigf52fvfw"]
+
+[ext_resource type="Script" path="res://obstacle_emitter.gd" id="1_1sr3r"]
+[ext_resource type="Script" path="res://background.gd" id="2_e8xwa"]
+[ext_resource type="Texture2D" uid="uid://dfdjdiqb4gvtw" path="res://assets/background.png" id="2_fwjx7"]
+[ext_resource type="Texture2D" uid="uid://b66ohu1bwt2d0" path="res://assets/background2.png" id="4_23tfv"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_1sr3r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-66, -50)
+texture = ExtResource("2_fwjx7")
+centered = false
+script = ExtResource("2_e8xwa")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(1214, -50)
+texture = ExtResource("4_23tfv")
+centered = false
+script = ExtResource("2_e8xwa")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(-1346, -50)
+texture = ExtResource("4_23tfv")
+centered = false
+script = ExtResource("2_e8xwa")
+
+[connection signal="pause" from="." to="Sprite2D" method="_on_node_2d_pause"]
+[connection signal="pause" from="." to="Sprite2D2" method="_on_node_2d_pause"]
+[connection signal="play" from="." to="." method="_on_play"]
+[connection signal="play" from="." to="Sprite2D" method="_on_node_2d_play"]
